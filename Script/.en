@@ -1,0 +1,5 @@
+PG_PASS=maximus
+PG_HOST=localhost
+PG_USER=maxrome
+PG_PORT=5432
+PG_DB=benefits

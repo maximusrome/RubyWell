@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title> Welcome to Wellcare </title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="robots" content="noindex">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/bundle.css?v=JtTw1ffhMj29j5q9GyhtzU_pGgI" rel="stylesheet" />
+    <script src="/js/bundle.js?v=wdIeTugyf5hPNqUcZs8hSbMYWdE"></script>
+
+        <!-- Google tag (gtag.js) --> 
+            <script async src='https://www.googletagmanager.com/gtag/js?id=G-2P7LX36Q85'></script> 
+            <script>
+                window.dataLayer = window.dataLayer || []; 
+                function gtag(){dataLayer.push(arguments);} 
+                gtag('js', new Date()); 
+                gtag('config', 'G-2P7LX36Q85'); 
+            </script>
+        <!-- End Google Analytics -->
+        <!-- Google Tag Manager -->
+        <script>
+            (function() {
+                function pushTag(w, d, s, l, i) {
+                    w[l] = w[l] || [];
+                    w[l].push({
+                        'gtm.start':
+                            new Date().getTime(),
+                        event: 'gtm.js'
+                    });
+                    var f = d.getElementsByTagName(s)[0],
+                        j = d.createElement(s),
+                        dl = l != 'dataLayer' ? '&l=' + l : '';
+                    j.async = true;
+                    j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+                    f.parentNode.insertBefore(j, f);
+                };
+
+pushTag(window, document, 'script', 'dataLayer', 'GTM-TM54T');            })();
+        </script>
+        <!-- End Google Tag Manager -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-1037787182"></script>
+<script>
+window.dataLayer = window.dataLayer || []; 
+function gtag(){dataLayer.push(arguments);} 
+gtag('js', new Date()); 
+gtag('config', 'AW-1037787182'); 
+</script>
+
+            <script src="/js/external/raygun-2.25.6.min.js?v=Y0YL1Toi7v6_Eu5rwy4UBDXOlXg" type="text/javascript"></script>
+            <script type='text/javascript'>
+                
+                Raygun.init('29w6S7WtVOO33eYysIZ1g', { debugMode: false}).attach();//exceptions are also thrown on console if debugMode is set to true
+
+                //Custom error types for Raygun Reporting
+                function ConsoleLoggedError(message, stack) {
+                    this.name = "ConsoleLoggedError";
+                    this.message = (message || "");
+                    this.stack = stack;
+                }
+
+                ConsoleLoggedError.prototype = Error.prototype;
+
+                //send custom error to raygun
+                function ReportToRaygun(message, args, stack, loggedErrors) {
+                    var argsStr = "\n args: ".concat(args);
+
+                    //append stack trace from each error if any
+                    if (loggedErrors) {
+                        var stacks = loggedErrors.map(function(err) {return err.stack});
+                        if (stack && stack.concat)
+                            stack.concat("\n").concat(Array.prototype.join.call(stacks));
+                        else
+                            stack = Array.prototype.join.call(stacks);
+                    }
+
+                    Raygun.send(new ConsoleLoggedError(message && message.concat? message.concat(argsStr) : argsStr, stack));
+                }
+
+                function isError(arg) {
+                    return arg instanceof Error;
+                }
+
+                function ArgsContainErrorObject(args) {
+                    var result = false;
+                    [].forEach.call(args, function (arg) {
+                        if (isError(arg)) {
+                            result = true;
+                            return;
+                        }
+                    });
+
+                    return result;
+                }
+
+                function GetAllErrors(args) {
+                    var errors = [];
+                    [].forEach.call(args, function (arg) {
+                        if (isError(arg)) {
+                            errors.push(arg);
+                        }
+                    });
+
+                    return errors;
+                }
+
+                //Capture all console.log, console.error and console.exception
+                if (console) {
+                    var logFunc = console.log;
+                    console.log = function (msg) {
+                        if (ArgsContainErrorObject(arguments)) {
+                            var errors = GetAllErrors(arguments);
+                            ReportToRaygun(msg, Array.prototype.join.call(arguments), (msg instanceof Error)? msg.stack: null, errors);
+                        }
+
+                        if (logFunc)
+                            logFunc.apply(this, Array.prototype.slice.call(arguments));
+                    };
+
+                    var errFunc = console.error;
+                    console.error = function (err) {
+                        ReportToRaygun(err, Array.prototype.join.call(arguments), err.stack);
+                        if (errFunc)
+                            errFunc.apply(this, Array.prototype.slice.call(arguments));
+                    };
+
+                    var exceptionFunc = console.exception;
+                    console.exception = function (err) {
+                        ReportToRaygun(err, Array.prototype.join.call(arguments), err.stack);
+                        if(exceptionFunc)
+                            exceptionFunc.apply(this, Array.prototype.slice.call(arguments));
+                    };
+                }
+
+            </script>
+
+    
+        <script>var Resources = {"Resources.Scripts.ScriptsResources":{"RemovePrimaryPharmacy":"Remove this as your primary pharmacy?","PlanNotFound":"Couldn\u0027t find the plan","HeaderAlert":"Too many headers detected","LastNameValidationText":"Last name must have 5\u002B characters.","SelectEmailText":"You must select either email, text, or both!","ResendQuoteTimeOutMessage":"Please, check your email or text for the verification code. If one was not received, please try again.","SomethingWentWrong":"Something went wrong.","UrlAlreadyTaken":"This URL is already taken.","Gender":"Gender","RadiusZipValidation":"Please provide a ZIP Code when searching by radius.","ExtraHelpEligibility":"You\u2019re eligible for Extra Help!","FirstNameValidation":"Please enter a First Name.","MedicareUnverified":"This information could not be verified, please try again.","NoFileUploaded":"No files were uploaded!","ZipCodeValidation":"Please enter a 5 digit ZIP Code.","FormError":"Please correct the errors in the form.","DownloadComplete":"The download of your file was successful.","ExceedsPurlRecords":"The user has exceeded the PURL records limit. Kindly reach out to the Administrator for assistance in customizing the URL.","RadiusValidation":"Please provide a ZIP Code when searching by radius.","MedicareValidation":"Please enter a valid Medicare Number.","MakePrimaryPharmacy":"Make this your primary pharmacy?","ZipCodeNotFound":"Sorry, we couldn\u0027t find that ZIP Code. Please check it and try again.","Premium":"premium","MedicareCannotBeVerified":"Press Verify to re-verify or press Next to proceed to the next step after entering the required valid information.","FormClearningOutMessage":"All corresponding fields are being cleared out.","MedicareValidationError":"Unable to validate your Medicare number at this time. Please enter valid information above and click Next to continue.","CopyUrl":"Copy URL","UrlDoesntMeetTheRequirements":"This URL doesn\u0027t meet the requirements!","EmptySearchText":"Please provide at least one search criteria.","IssueDownloadingFile":"There is an issue downloading the file, please try again!","CityWithoutStateValidation":"Please provide a State or ZIP Code when searching by City.","PcpSelected":"PCP Information entered will be lost","FormInputClearWarning":"Your form inputs will be cleared out","ProcessingFile":"Processing file...","MaskFullDate":"mm/dd/yyyy","NoFileSelected":"No file selected. Please choose a file to upload.","UrlCopied":"URL Copied","NameRequired":"First Name and Last Name are required to save the application!","Street3Validation":"Please provide City, State and Zip when searching by address.","WindowClosingAlertMsg":"This window will now be closed.","GenderErrorMessage":"Please select your gender.","Street2Validation":"Please provide Street address when searching by Apt, Ste.","Download":"Download","MedicaidId":"Medicaid Number","Street1Validation":"Please provide City and either State or zip when searching by address.","ProviderSelectionFailure":"Failed to save provider selection","YieldedMoreResults":"Warning: Your search criteria has yielded numerous records, however, due to limitations, we can only download a limited number of records.","Dob":"Date Of Birth","Ssn":"Social Security Number","SsnValidation":"Please enter valid Social Security Number","LastName":"Last Name","ConfirmDelete":"Do you want to Delete this saved application?","Address":"Address","SEPDatesCleared":"All other SEP dates will be cleared","EnrollmentFormErrors":"Please correct the errors in the Form","MbiReplace":"Your Medicare Number has been verified and updated with your new Medicare Beneficiary Identifier (MBI).","EmptySearch":"Search cannot be empty.","VerifyingMedicare":"Verifying Medicare Claim Number...","Cambia_MedicareValidationError":"Unable to validate your Medicare number at this time. Please click Next to continue.","AtleastOne":"Please select at least one of the 2 options.","SelectForComparison":"Select for Comparison","ZipCodeRequired":"Please provide the Zip Code.","RadiusSearchValidation":"Please provide the Radius to search.","MaskDateWith1stDay":"mm/01/yyyy","FirstName":"First Name","CouldntUpdatePurl":"Sorry, we couldn\u0027t update the PURL at the moment. Please try again later.","RedirectToHome":"Sorry, we couldn\u0027t find that ZIP Code. You are being redirected to the Home Page","CityValidation":"Please enter a valid City.","InformationUnavailable":"Information not available.","MedicareReVerify":"Press Verify to re-verify to proceed to next step","SoaFormSubmissionError":"An error occurred when submitting the SOA form!","AddedToComparison":"Added to Comparison","MaskDates":"mm/dd/yyyy","CompareValidation":"Please select at least two products to compare","MailingStateValidation":"Please select a mailing state","MedicaidNumberValidation":"Please enter valid Medicaid Number","ZipCodeError":"Sorry, an error occurred. Please try again.","UrlAlreadyTakenWithFollowing":"This URL is already taken. How about the following?","Selected":"Selected","ErrorDownloadingFile":"An error occurred when downloading the file!","DateValidation":"Please enter a valid Date of Birth.","MedicaidStateValidation":"Please select a medicaid state","ReadyToDownload":"Ready to download |","WiproAlertHeading":"Verified data does not match the value entered on the form for:","City2StateValidation":"Please provide both City and State when searching by address.","LastNameValidation":"Please enter a Last Name.","ErrorResendingCode":"Error resending the quote and/or verification code.","City":"City"}};</script>
+
+    
+
+    <script type="text/javascript">
+
+        var temp = window.Resources["Resources.Scripts.ScriptsResources"];
+        
+        delete window.Resources["Resources.Scripts.ScriptsResources"];
+        
+        if("False" == "True")
+        {
+            var rate = window.Resources["Resources.Rate.RateResources"];
+            window.RateResources = rate;
+            delete window.Resources["Resources.Rate.RateResources"]
+        }
+
+        window.Resources =  temp;
+
+    </script>
+            <script src="/js/Carrier/WellCare/WellCareBaseRedesign.js?v=F8QXznMSJSgTxXP4W_qM7M3sIu4"></script>
+
+<script type="text/javascript">
+        $(addWhitelistWarnings);
+        function addWhitelistWarnings() {
+           var domains = JSON.parse('["wellcare.isf.io","ascendproject.com","medicare.gov","healthcare.gov","calmediconnectla.org"]');
+            assignOnClicks(domains);
+        }
+
+        function assignOnClicks(domains) {
+            var aTags = document.getElementsByTagName('a');
+
+            for (var i = aTags.length - 1; i >= 0; --i) {
+                //do not consider the "#" beyond the starting position of the string
+                if (!(aTags[i].href == "" || aTags[i].href == " " || aTags[i].href == undefined || aTags[i].href.indexOf("javascript") > -1 || (aTags[i].href.indexOf("#") > -1 && !aTags[i].href.indexOf("#") > 0 ))) {
+                    var isLinkWhitelisted = false;
+
+                    for (var d = 0; d < domains.length; d++) {
+                        if (aTags[i].href.indexOf(domains[d]) >= 0) {
+                            isLinkWhitelisted = true;
+                            break;
+                        }
+                    }
+
+                    if (!isLinkWhitelisted) {
+                        aTags[i].onclick = function () {
+                            var content = htmlDecode('You are now leaving the Wellcare Website. The information you will be accessing is provided by another organization or vendor. If you do not intend to leave our site, please click Cancel.');
+                            if (content.trim() != "") {
+                                if (!confirm(content)) {
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+</script></head>
+<body>
+
+
+
+
+        <!-- Google Tag Manager (noscript) -->
+        <noscript>
+<iframe src="//www.googletagmanager.com/ns.html?id=GTM-TM54T" title="Google Tag Manager" height="0" width="0" style="display: none; visibility: hidden"></iframe>        </noscript>
+        <!-- End Google Tag Manager (noscript) -->
+    <div id="wrap" class="fontresize">
+
+
+<link href="/css/PageHeader.css?v=GM-fwoghBm79qVO2M6w_td-odR8" rel="stylesheet" />
+<script src="/js/overlayHelper.js?v=Rtnr6KVy6Iw3kiwreVd_QF6k6uE" type="text/javascript"></script>
+<link href="/css/overlay.css?v=KaIFWMKmpBCEagu41L7YLAGLWBM" rel="stylesheet" />
+
+
+    <header>
+        <div class="container">
+            <a id="skipToContent" class="sr-only sr-only-focusable" href="#content">
+                <span class="skiplink-text">Skip to main content</span>
+            </a>
+        </div>
+<div class="ieDepracatedBanner" style="display:none;">
+    Currently, you are using the Internet Explorer (IE) browser. Support for IE is ending soon. Please consider switching to one of these recommended browsers for the best performance: <b>Chrome, Edge, or Firefox</b>.
+</div>
+<script>var isIE = navigator.userAgent.indexOf("Trident") !== -1 || navigator.userAgent.indexOf("MSIE") !== -1;
+    if (isIE) {
+        $(".ieDepracatedBanner").show();
+    } else {
+        $(".ieDepracatedBanner").hide();
+    }</script>
+
+
+<!--
+This shared layout is a top banner which indicates that the site was accessed using a PURL and that all the applications entered will be credited to the Agent to which this PURL belongs.
+-->
+
+<!--
+This shared layout is used to indicate that the site was accessed using the link in the email sent by the agent and enrollment will be credited to the agent who sent the email.
+     Also to indicate the agent being credited during Send For Signature flow
+-->
+<!--
+This shared layout is a top banner which indicates that the site was accessed using a Sandbox mode and that the application data is not saved into database.
+-->
+
+<!--
+This shared layout is a top banner which indicates that the site was accessed using a callcenter mode, i.e using the url eg: '{url}/callcenter'
+-->
+
+
+
+            <div class="header">
+                <div class="container-fluid not-agent-logged">
+                    <div id="pageheader-row" class="row">
+                        <div class="logo col-sm-6" style="margin-left: 30px;">
+                            <a id="logoLink" tabindex="-1" href="/2024/g/c096b7c7f8d348f08ce76b1599233ede">
+                                <img src="https://db7vft0yj819p.cloudfront.net/Content/Logos/Wellcare_HomePage_Logo_2021.jpg?1.0.0.0" alt="WellCare" />
+                            </a>
+                        </div>
+                            <div id="typeSize" class="col-sm-5">
+                                <div class="type-size">
+                                    <div class="top-bar-items">
+
+                                            <div id="Agent-login-btn" class="agent-login-btn">
+                                                <a href="/2024/g/c096b7c7f8d348f08ce76b1599233ede/Agent" class="action icon-link icon-link-light">
+                                                    <span class="fa fa-user-circle" aria-hidden="true"></span>
+                                                    <span class="icon-link-text">
+                                                        Agent Login
+                                                    </span>
+                                                </a>
+                                            </div>
+
+                                        <div class="top-bar-home-btn">
+                                            <a href="/2024/g/c096b7c7f8d348f08ce76b1599233ede" class="action icon-link icon-link-light">
+                                                <span class="fa fa-home" aria-hidden="true"></span>
+                                                <span class="icon-link-text">
+                                                    Home
+                                                </span>
+                                            </a>
+                                        </div>
+                                        <div id="headerPrintButton" class="top-bar-print-btn" style="display:none">
+                                            <a id="printThisPage" onkeyup="keyboard_Accessibility_Click(event)" class="action icon-link icon-link-light" onclick="printfunc();return false;">
+                                                <span class="fa fa-print" aria-hidden="true"></span>
+                                                <span class="icon-link-text">
+                                                    Print
+                                                </span>
+                                            </a>
+                                        </div>
+
+                                        <div class="type-size-items">
+                                            <span class="letter" aria-hidden="true">A</span>
+                                            <input id="fontSizeSlider" data-slider-id='fontSizedataSlider' type="text" data-slider-min="100" data-slider-max="130" data-slider-step="3" aria-labelledby="labelFontSlider" />
+                                            <span class="letter big" aria-hidden="true">A</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+    </header>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        selectCurrentPlanYear();
+    });
+    function changeBusinessEntity(beid) {
+        displayOverlay("", $("body"));
+        $.ajax({
+            url: '/2024/g/c096b7c7f8d348f08ce76b1599233ede/Agent/SetBusinessEntity',
+            data: { id: beid },
+            success: function () {
+                removeOverlay();
+                window.location.reload();
+            },
+            error: function (err) {
+                console.error(err);
+                removeOverlay();
+            }
+        })
+    }
+</script>
+<script>
+    setupPlanYearDropdown();
+    function setupPlanYearDropdown() {
+        const customDropdown = document.querySelector('.custom-dropdown');
+        if (!customDropdown) {
+            return;
+        }
+        const selectedItem = customDropdown.querySelector('.selected-item');
+        const dropdownList = customDropdown.querySelector('.dropdown-list');
+        const dropdownItems = customDropdown.querySelectorAll('.dropdown-item');
+        var url = window.location.href.split("/");
+        var selectedyear = url[3];
+        if (selectedyear.includes("?")) {
+            selectedyear = selectedyear.split("?")[0];
+        }
+
+        const selectedYearElement = customDropdown.querySelector('.selected-year');
+        selectedYearElement.textContent = selectedyear;
+
+        function updateTicks() {
+            dropdownItems.forEach(item => {
+                const itemValue = item.getAttribute('data-value');
+                const tick = item.querySelector('.tick');
+                if (itemValue === selectedyear) {
+                    tick.style.display = 'inline-block';
+                } else {
+                    tick.style.display = 'none';
+                }
+            });
+        }
+        updateTicks();
+
+        function toggleDropdown() {
+            dropdownList.classList.toggle('print');
+        }
+
+
+        selectedItem.addEventListener('click', () => {
+            toggleDropdown();
+            updateTicks();
+        });
+
+        dropdownItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const selectedValue = item.getAttribute('data-value');
+                if (selectedValue !== selectedyear) {
+                    selectedyear = selectedValue;
+                    selectedYearElement.textContent = item.textContent;
+                    dropdownList.style.display = 'none';
+                    updateTicks();
+                    selectPlanYear(selectedValue);
+                }
+            });
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!customDropdown.contains(event.target)) {
+                dropdownList.classList.remove('print'); // Remove the 'show' class to hide the dropdown list
+            }
+        });
+    }
+</script>
+
+        <main id="content">
+            <div class="beneficiary-quoteflow_zip-page banner" id="homePage" style="background-image: url('https://static.isf.io/Wellcare/1/2024Banner-Banner-2024-v1.png')">
+                <div class="container">
+                    <div class="row centered-container">
+                        <div class="all-content">
+                            
+        <script src="/js/planFilterPersistenceHelper.js?v=F6u29U9qENv6qT2GfEZnQu55ioc"></script>
+<script>$(document).ready(function () {
+        $(":input").prop("autocomplete", "off");
+        $("#homeButton").hide();
+        $("#typeSize").addClass("col-sm-6").removeClass("col-sm-5");
+        $("#planYearSelection").removeClass("hidden");
+    });
+    if (typeof window.pf_PersistenceHelper !== 'undefined')
+        window.pf_PersistenceHelper.ClearState();</script>
+<div id="breadcrumbs">
+
+
+    <div>
+        <div class="step-breadcrumbs" style="width: 100%">
+            <span class="step breadcrumbs-title" style="width: calc(100% / 5)"><span class="sr-only">Steps to get started with your </span>Health Profile</span>
+            <ol class="navbar">
+                    <li style="width: calc(100% / 4)" class="autofit" data-testid="list-assisted-shopping-1" data-step="-1" data-activeStep=True>
+                        <a href="/2024/g/c096b7c7f8d348f08ce76b1599233ede" data-testid="link-assisted-shopping-1" onclick="">
+                            <span class="step step-breadcrumbs-step--active">
+                                <span class="spinner-blue-on-click" style="display: flex; justify-content: center; align-items: center;">
+                                    <span class="step-breadcrumbs-step-circle step-breadcrumbs-step-number" role="presentation" aria-hidden="true">1</span>
+                                    <span class="step-breadcrumbs-step-circle step-breadcrumbs-step-check">
+                                        <span class="fa fa-check" aria-hidden="true"></span>
+                                    </span>
+                                    <span>ZIP Code</span>
+                                </span>
+                            </span>
+                        </a>
+                    </li>
+                    <li style="width: calc(100% / 4)" class="autofit" data-testid="list-assisted-shopping-2" data-step="0" data-activeStep=False>
+                        <a href="#" data-testid="link-assisted-shopping-2" onclick="assistedShoppingGoToStep(0); return false;">
+                            <span class="step">
+                                <span class="spinner-blue-on-click" style="display: flex; justify-content: center; align-items: center;">
+                                    <span class="step-breadcrumbs-step-circle step-breadcrumbs-step-number" role="presentation" aria-hidden="true">2</span>
+                                    <span class="step-breadcrumbs-step-circle step-breadcrumbs-step-check">
+                                        <span class="fa fa-check" aria-hidden="true"></span>
+                                    </span>
+                                    <span>My Drugs</span>
+                                </span>
+                            </span>
+                        </a>
+                    </li>
+                    <li style="width: calc(100% / 4)" class="autofit" data-testid="list-assisted-shopping-3" data-step="2" data-activeStep=False>
+                        <a href="#" data-testid="link-assisted-shopping-3" onclick="assistedShoppingGoToStep(2); return false;">
+                            <span class="step">
+                                <span class="spinner-blue-on-click" style="display: flex; justify-content: center; align-items: center;">
+                                    <span class="step-breadcrumbs-step-circle step-breadcrumbs-step-number" role="presentation" aria-hidden="true">3</span>
+                                    <span class="step-breadcrumbs-step-circle step-breadcrumbs-step-check">
+                                        <span class="fa fa-check" aria-hidden="true"></span>
+                                    </span>
+                                    <span>My Doctor</span>
+                                </span>
+                            </span>
+                        </a>
+                    </li>
+                    <li style="width: calc(100% / 4)" class="autofit" data-testid="list-assisted-shopping-4" data-step="3" data-activeStep=False>
+                        <a href="#" data-testid="link-assisted-shopping-4" onclick="assistedShoppingGoToStep(3); return false;">
+                            <span class="step step-breadcrumbs-step--last">
+                                <span class="spinner-blue-on-click" style="display: flex; justify-content: center; align-items: center;">
+                                    <span class="step-breadcrumbs-step-circle step-breadcrumbs-step-number" role="presentation" aria-hidden="true">4</span>
+                                    <span class="step-breadcrumbs-step-circle step-breadcrumbs-step-check">
+                                        <span class="fa fa-check" aria-hidden="true"></span>
+                                    </span>
+                                    <span>Our Plans</span>
+                                </span>
+                            </span>
+                        </a>
+                    </li>
+            </ol>
+        </div>
+    </div>
+
+<script>
+    // Code adjustments to resize navigation bar w.r.t to screen width
+    var listItemWidth;
+    var displayLi;
+    var displayVal;
+    var breadCrumbDiv;
+    var resizer = function () {
+
+        if (window.innerWidth < 700) {
+
+            $(".autofit").each(function () {
+
+                $(this).css("width", "100%");
+                $(this).css("display", "");
+            });
+
+            $(".step-breadcrumbs ol").each(function () {
+                $(this).css("display", 'block');
+            });
+
+            $(".step-breadcrumbs").each(function () {
+                $(this).css("display", 'inline-block');
+            });
+        } else {
+            $(".autofit").each(function () {
+                $(this).css("width", listItemWidth + "%");
+                $(this).css("display", displayLi);
+            });
+
+            $(".step-breadcrumbs ol").each(function () {
+                $(this).css("display", displayVal);
+            });
+
+            $(".step-breadcrumbs").each(function () {
+                $(this).css("display", breadCrumbDiv);
+            });
+        }
+    };
+
+    $(document).ready(function () {
+        $(".autofit").each(function () {
+            // storing previous values either in local storage or in a global variable
+            listItemWidth = $(this).css("width");
+            displayLi = $(this).css("display");
+        });
+
+        $(".step-breadcrumbs ol").each(function () {
+            displayVal = $(this).css("display");
+        });
+
+        $(".step-breadcrumbs").each(function () {
+            breadCrumbDiv = $(this).css("display");
+        });
+        resizer();
+        $(window).resize(function () {
+            setTimeout(function () {
+                resizer();
+            }, 100);
+        });
+
+        // The following code disables the lookup links on the nav bar when user is on home page.
+        $('.step-breadcrumbs-step-number').each(function () {
+            if ($(this).text() == "1" && $(this).closest('.step-breadcrumbs-step--active').length != 0) {
+                $('.step-breadcrumbs-step-number').each(function () {
+                    if ($(this).text() != "1") {
+                        $(this).closest('li').css('pointer-events', 'none');
+                        $(this).closest('span').parent().closest('span').css('color', '#ababab');
+                        $(this).closest('a').prop('onclick', null);
+                    }
+                });
+            }
+        });
+    });</script></div>
+    <div id="divErrorMessage" class="error-message" role="alert" hidden>
+        <h2 class="sr-only">Errors</h2>
+        <span class="fa fa-exclamation-triangle" aria-hidden="true"></span>
+        <span id="error-title">
+        </span>
+        <p id="error-content">
+        </p>
+        <button id="error-close-btn" class="close-error-button" aria-labelledby="error-title">
+            <span class="fa fa-times" aria-hidden="true"></span>
+            <span class="sr-only">Close error</span>
+        </button>
+    </div>
+<div class="profile-title" id="dvSection1">
+    <h1>
+Explore Plans    </h1>
+    <p>
+            <span><b>Enter your ZIP Code below to find</b></span>
+            <br />
+            <span><b>Medicare plans and review rates.</b></span>
+            <br />
+    </p>
+</div>
+<form action="/2024/g/c096b7c7f8d348f08ce76b1599233ede/Home/GetCounties" id="__AjaxAntiForgeryForm" method="post" name="zipcodeForm" style="display:inline-block">    <div class="main-zip-code-entry">
+        <input aria-label="Your ZIP Code" aria-required="true" class="height-large input-text required" id="Location_Zip" maxlength="5" name="quote.Location.Zip" placeholder="Your ZIP Code" required="required" type="zip" value="" />
+                    <button type="submit" id="btnHelpMe" name="submit" onclick="return validateZip('Location_Zip', true, { id: this.id, loadingClass: 'loading' });" class="btn btn-custom" value="Continue">Get Started<span class="sr-only">Get Started</span></button>
+                    <button type="submit" id="btnPlans" name="submit" onclick="return validateZip('Location_Zip', true, { id: this.id, loadingClass: 'loadingBlue' });" class="btn btn-secondary" value="Go To Plans">View Our Plans<span class="sr-only">View Our Plans</span></button>
+        <div class="profile-title" id="dvSection2"></div>
+    </div>
+<input name="__RequestVerificationToken" type="hidden" value="CfDJ8HAEUs1AUs1NvxqdTq8XexYcWlMLh5FX91J5wKp608MPD-YUXFiGIVbXu46w7KCwbbG5ydsmeVc-lks1wWSxiN6933BebdSWusNVw0nLfJq7Mxd7mmDanDeETnkzjQ15z9huDnTZ__MXesdUqpqCk7c" /></form>
+<div id="CheckHomePage" class="CheckHomePage" hidden></div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <div class="footer">
+            <footer class="footer-content container">
+                <div class="row">
+                    <div class="disclaimer col-md-8">
+                        <div class="seperated-actions footer-actions" style="margin: 0 0 10px 0">
+
+
+        <ul class="languageLinks">
+            <li>English</li>
+            <li>
+<a href="/2024/g/c096b7c7f8d348f08ce76b1599233ede/Localization?currentController=Home&amp;currentAction=Index&amp;url=https%3A%2F%2Fwellcare.isf.io%2F2024%3F_gl%3D1*1rjvlfa*_ga*MjI2NTM1MTk0LjE3MTk1MTI1MTc.*_ga_2BH6Y09M3E*MTcxOTUxNTI3OS4yLjEuMTcxOTUxNjAxMS4zOC4wLjA.&amp;language=es-US" id="languageName" title="Spanish">Espa&#xF1;ol</a>            </li>
+        </ul>
+                        </div>
+
+
+    <h2 class="sr-only">Disclaimer and Help</h2>
+        <h3 class="disclaimer-title">
+            Disclaimer of Warranties and Liabilities
+        </h3>
+            <p>‘Ohana Health Plan, a plan offered by Wellcare Health Insurance of Arizona, Inc.</br></br>Wellcare is the Medicare brand for Centene Corporation, an HMO, PPO, PFFS, PDP plan with a Medicare contract and is an approved Part D Sponsor. Our D-SNP plans have a contract with the state Medicaid program. Enrollment in our plans depends on contract renewal.<br></br>CalViva Health is a Medi-Cal Managed Care Plan (MCP) and is the Local Initiative Health Plan for Medi-Cal managed care in Fresno, Kings, and Madera Counties. CalViva Health is a full-service health plan contracting with the Department of Health Care Services (DHCS) to provide Medi-Cal Covered Services to Medi-Cal managed care enrollees under the Two-Plan model in all zip codes in Fresno, Kings, and Madera Counties. CalViva Health contracts with Health Net Community Solutions, Inc. on a capitated basis to provide and arrange for Medi-Cal Covered Services in all zip codes in Fresno, Kings, and Madera Counties. Health Net Community Solutions, Inc. is a subsidiary of Health Net, LLC and Centene Corporation, and is the CalViva Health MCP’s Contracted Administrator in all zip codes in Fresno, Kings, and Madera Counties.</br></br>Washington residents: Health Net Life Insurance Company is contracted with Medicare for PPO plans. “Wellcare by Health Net” is issued by Health Net Life Insurance Company.</br></br>Washington residents: “Wellcare” is issued by Wellcare of Washington, Inc.</br></br>Washington residents: “Wellcare" is issued by Wellcare Health Insurance Company of Washington, Inc.</p>
+            <p>“Wellcare” is issued by Wellcare Prescription Insurance, Inc.</br></br>Health Net is contracted with Medicare for HMO plans. Enrollment in Health Net depends on contract renewal.</br></br>Every year, Medicare evaluates plans based on a 5-star rating system.</br></br>Out-of-network/non-contracted providers are under no obligation to treat Plan members, except in emergency situations. Please call our customer service number or see your Evidence of Coverage for more information, including the cost-sharing that applies to out-of-network services.</br></br>Medicare approved Wellcare to provide these benefits and lower copayments/co-insurance as part of the Value-Based Insurance Design program. This program lets Medicare try new ways to improve Medicare Advantage plans.</br></br>Benefits mentioned may be a part of Special Supplemental Benefits for the Chronically Ill. Not all members will qualify.</br></br>Arizona D-SNP plans: Contract services are funded in part under contract with the State of Arizona.</p>
+            <p>New Mexico (NM) Dual Eligible Special Needs Plan (D-SNP) Members: As a Wellcare by Allwell D-SNP member, you have coverage from both Medicare and Medicaid. Medicaid services are funded in part by the state of New Mexico. NM Medicaid benefits may be limited to payment of Medicare premiums for some members.</br></br>Louisiana D-SNP members: As a Wellcare HMO D-SNP member, you have coverage from both Medicare and Medicaid. You receive your Medicare health care and prescription drug coverage through Wellcare and are also eligible to receive additional health care services and coverage through Louisiana Medicaid. Learn more about providers who participate in Louisiana Medicaid by visiting <a href="http://www.myplan.healthy.la.gov/en/find-provider">www.myplan.healthy.la.gov/en/find-provider</a> or <a href="https://www.louisianahealthconnect.com/">www.louisianahealthconnect.com/</a>. For detailed information about Louisiana Medicaid benefits, please visit the Medicaid website at <a href="https://www.ldh.la.gov/medicaid">www.ldh.la.gov/medicaid</a> and select the “Learn about Medicaid Services” link. To request a written copy of our Medicaid Provider Directory, please contact us.</br></br>Louisiana D-SNP prospective enrollees: For detailed information about Louisiana Medicaid benefits, please visit the Medicaid website at <a href="https://www.ldh.la.gov/medicaid">https://www.ldh.la.gov/medicaid</a> or <a href="https://www.louisianahealthconnect.com/">www.louisianahealthconnect.com</a>. To request a written copy of our Medicaid Provider Directory, please contact us.</p>
+            <p>Notice: TennCare is not responsible for payment for these benefits, except for appropriate cost sharing amounts. TennCare is not responsible for guaranteeing the availability or quality of these benefits. Any benefits above and beyond traditional Medicare benefits are applicable to Wellcare Medicare Advantage only and do not indicate increased Medicaid benefits.</br></br>Indiana D-SNP prospective enrollees: For detailed information about Indiana Medicaid benefits, please visit the Medicaid website at  <a href="https://www.in.gov/medicaid">https://www.in.gov/medicaid</a>.</br></br>Wellcare’s pharmacy network includes limited lower-cost preferred pharmacies in rural areas of MO and NE. The lower costs advertised in our plan materials for these pharmacies may not be available at the pharmacy you use. For up-to-date information about our network pharmacies, including whether there are any lower-cost preferred pharmacies in your area, please call 1-833-444-9088 (TTY 711) for Wellcare No Premium (HMO) and Wellcare Giveback (HMO) in MO or consult the online pharmacy directory at www.wellcare.com/medicare; and 1-833-542-0693 (TTY 711) for Wellcare No Premium (HMO), Wellcare Giveback (HMO), and Wellcare No Premium Open (PPO) in NE or consult the online pharmacy directory at <a href="https://www.wellcare.com/NE">https://www.wellcare.com/NE</a>.</p>
+            <p>We do not offer every plan available in your area. Any information we provide is limited to those plans we do offer in your area. Please contact Medicare.gov or 1-800-MEDICARE to get information on all of your options.</br></br>Wellcare by Allwell (HMO and HMO SNP) includes products that are underwritten by Superior HealthPlan, Inc. and Superior HealthPlan Community Solutions, Inc.</br></br>Wellcare (HMO and HMO SNP) includes products that are underwritten by Wellcare of Texas, Inc., Wellcare National Health Insurance Company, and SelectCare of Texas, Inc.</br></br>Wellcare Dual Liberty (HMO D-SNP) is a Fully Integrated Dual Eligible Special Needs Plan with a Medicare contract and a contract with the New Jersey Medicaid program. Enrollment in Wellcare Dual Liberty depends on contract renewal. This information is not a complete description of benefits. Contact the plan for more information. Limitations and restrictions may apply. Benefits may change on January 1 of each year. Your Part B premium is covered by Medicaid. This plan is available to those who have both Medicare and full Medicaid benefits. Wellcare uses a formulary. There is no obligation to enroll. Please contact Wellcare for details.</br></br>Please contact your plan for details.</p>
+
+                        <p>
+                            © Copyright 2023 Centene Corporation, © Copyright 2023 Wellcare Health Plans, Inc. | <br><br>WC: Y0020_WCM_137321E_M<br><br>Calviva: H3561_CNC_138005E_M<br><br>DL: H0913_CNC_137997E_M<br><br>Last Updated: 9/18/23
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                      
+                                    <div class="enrollement-help-hra-confirmation enrollment-help ">
+                                        <h3 class="enrollment-help-title">
+                                            Need Help?
+                                        </h3>
+                                                    <p class="enrollment-help-info">
+                                                        <b>Phone Number:</b>
+                                                    </p>
+                                                    <p class="enrollment-help-info">
+                                                         866-822-1339 (TTY-711)
+                                                    </p>
+                                                    <p class="enrollment-help-info">
+                                                        <b>Hours:</b>
+                                                    </p>
+                                                    <p class="enrollment-help-info">
+                                                         8am - 8pm EST M-F
+                                                    </p>
+                                         </div>
+                               
+
+<div class="language-options">
+    <h3 class="language-options-title">Non-Discrimination Language Options</h3>
+    <div class="language-options-list">
+            <a class="label-link languageLinkAnchor" href="https://www.wellcarebyallwell.com/legal/nondiscrimination-notice.html" target="_blank">Wellcare by Allwell Non-Discrimination Notice</a>
+            <a class="label-link languageLinkAnchor" href="https://www.wellcarebyallwell.com/legal/language-assistance.html" target="_blank">Wellcare by Allwell Language Assistance</a>
+            <a class="label-link languageLinkAnchor" href="https://www.wellcarecomplete.com/legal/nondiscrimination-notice.html" target="_blank">Wellcare Complete Non-Discrimination Notice</a>
+            <a class="label-link languageLinkAnchor" href="https://www.wellcarecomplete.com/legal/language-assistance.html" target="_blank">Wellcare Complete Language Assistance</a>
+            <a class="label-link languageLinkAnchor" href="https://www.fideliscare.org/Portals/0/Medicare/Medicare-1557-Non-Discrimination-Notice-WC-By-FC.pdf" target="_blank">Wellcare by Fidelis Care Non-Discrimination Notice and Language Assistance</a>
+            <a class="label-link languageLinkAnchor" href="https://wellcare.healthnetcalifornia.com/legal/nondiscrimination-notice.html" target="_blank">Wellcare by Health Net (CA only) Non-Discrimination Notice</a>
+            <a class="label-link languageLinkAnchor" href="https://wellcare.healthnetcalifornia.com/legal/language-assistance.html" target="_blank">Wellcare by Health Net (CA only) Language Assistance</a>
+            <a class="label-link languageLinkAnchor" href="https://www.wellcare.com/en/Corporate/Notice-of-Nondiscrimination" target="_blank">Wellcare Non-Discrimination and Language Assistance</a>
+            <a class="label-link languageLinkAnchor" href="https://www.wellcare.com/en/Corporate/Notice-of-Nondiscrimination" target="_blank">Wellcare TexanPlus CCP Non-Discrimination and Language Assistance</a>
+            <a class="label-link languageLinkAnchor" href="https://www.wellcare.com/en/Corporate/Notice-of-Nondiscrimination" target="_blank">&#x27;Ohana Non-Discrimination and Language Assistance</a>
+            <a class="label-link languageLinkAnchor" href="https://wellcare.healthnetoregon.com/legal/nondiscrimination-notice.html" target="_blank">Wellcare by Health Net (Oregon and Washington) Non-Discrimination Notice</a>
+            <a class="label-link languageLinkAnchor" href="https://wellcare.healthnetoregon.com/legal/language-assistance.html" target="_blank">Wellcare by Health Net (Oregon and Washington) Language Assistance</a>
+            <a class="label-link languageLinkAnchor" href="https://www.trilliumohp.com/nondiscrimination-notice.html" target="_blank">Wellcare by Trillium Advantage Non-Discrimination Notice and Language Assistance</a>
+            <a class="label-link languageLinkAnchor" href="https://www.wellcare.com/en/Corporate/Notice-of-Nondiscrimination" target="_blank">Wellcare Dual Liberty Non-Discrimination Notice and Language Assistance</a>
+            <a class="label-link languageLinkAnchor" href="https://wellcare.healthnetcalifornia.com/legal/nondiscrimination-notice.html" target="_blank">Wellcare Calviva Dual Align DSNP Non-Discrimination Notice</a>
+            <a class="label-link languageLinkAnchor" href="https://wellcare.healthnetcalifornia.com/legal/language-assistance.html" target="_blank">Wellcare Calviva Dual Align Language Options</a>
+            <a class="label-link languageLinkAnchor" href="https://www.wellcarebyallwell.com/legal/nondiscrimination-notice.html" target="_blank">Wellcare by Allwell (AZ DSNP) Non-Discrimination Notice</a>
+            <a class="label-link languageLinkAnchor" href="https://www.wellcarebyallwell.com/legal/language-assistance.html" target="_blank">Wellcare by Allwell (AZ DSNP) Language Options</a>
+    </div>
+</div>
+
+
+
+
+
+<img src="https://tags.w55c.net/rs?id=b64a5df7c53a438c9774ee7e1709cee1&t=homepage"/><script src="https://www.iconmediapixel.com?SiteId=bae92efc-5757-4aaf-b5af-459867babe6d&PageName=Homepage&CountryCode=COUNTRY&Source=ChannelGrouping&Source2=Medium&HostName=HOSTNAME" type="text/javascript"></script>                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+function FormSelect() {
+    $("#content").addClass("container-new-formselect");
+    $("#layout-footer").addClass("container-footer");
+    $("#layout-footer-col-md-4").addClass("narrow-width");
+    $("#layout-container").addClass("confirmation-container");
+    $("#layout-row-centered").addClass("layout-row-centered");
+}
+</script>
