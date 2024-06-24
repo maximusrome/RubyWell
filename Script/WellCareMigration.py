@@ -116,3 +116,4 @@ if __name__ == "__main__":
         print(f"An error occurred during migration: {e}")  # Print any errors that occur during migration
     finally:
         session.close()  # Ensure the session is closed after the migration process
+// Migration improvements
